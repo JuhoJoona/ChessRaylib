@@ -33,6 +33,13 @@ int main(void)
        
         Board board(boardArray);
 
+        if (IsMouseButtonPressed(0))
+        {
+            int index = board.TryToGetPieceUnderMouse(GetMouseX(), GetMouseY());
+
+            std::cout << "Mouse Position: (" << index << std::endl;
+        }
+
        
         BeginDrawing();
 

@@ -11,6 +11,9 @@ public:
     Board(int board[64]);
     void Draw() const;
 
+    int TryToGetPieceUnderMouse(int mouseX, int mouseY);
+
+
 private:
     int board[64];
 };

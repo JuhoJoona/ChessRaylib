@@ -36,5 +36,19 @@ void Board::Draw() const {
         }
     }
 
+}
 
+int Board::TryToGetPieceUnderMouse(int mouseX, int mouseY){
+    int tgtRow = mouseY / SQUARE_SIZE;
+    int tgtCol = mouseX / SQUARE_SIZE;
+
+    if (tgtRow >= 0 && tgtRow < BOARD_SIZE && tgtCol >= 0 && tgtCol < BOARD_SIZE) {
+        int index = tgtRow * BOARD_SIZE + tgtCol;
+
+
+
+        return board[index];;
+
+        return -1; // Return -1 if mouse is outside board bounds
+    }
 }
