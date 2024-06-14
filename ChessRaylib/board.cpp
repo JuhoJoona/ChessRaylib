@@ -1,5 +1,7 @@
 #include "Board.h"
 #include "piece.h"
+#include "TextureHandler.h"
+#include "raylib.h"
 
 Board::Board(int boardArray[64]) : selectedPieceIndex(-1) {
     for (int i = 0; i < 64; i++) {
@@ -8,6 +10,9 @@ Board::Board(int boardArray[64]) : selectedPieceIndex(-1) {
 }
 
 void Board::Draw() const {
+    // Define the size of each piece
+    const float PIECE_SIZE = SQUARE_SIZE * 0.8f; // Adjust the scaling factor as needed
+
     for (int y = 0; y < BOARD_SIZE; y++) {
         for (int x = 0; x < BOARD_SIZE; x++) {
             int index = y * BOARD_SIZE + x;
@@ -18,7 +23,7 @@ void Board::Draw() const {
 
             // Highlight legal moves
             if (std::find(legalMoves.begin(), legalMoves.end(), index) != legalMoves.end()) {
-                squareColor = YELLOW; // Highlight color for legal moves
+                squareColor = YELLOW; 
             }
 
             DrawRectangle(x * SQUARE_SIZE, y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE, squareColor);
@@ -27,11 +32,24 @@ void Board::Draw() const {
                 int pieceType = Piece::PieceType(value);
                 int pieceColor = Piece::Color(value);
 
-                // Determine piece color
                 Color color = (pieceColor == Piece::White) ? WHITE : BLACK;
 
-                // Draw a simple circle as a placeholder for the piece
-                DrawCircle((x * SQUARE_SIZE) + SQUARE_SIZE / 2, (y * SQUARE_SIZE) + SQUARE_SIZE / 2, SQUARE_SIZE / 3, color);
+                TextureHandler& handler = TextureHandler::getInstance();
+
+  
+                Rectangle destRec = {
+                    x * SQUARE_SIZE + (SQUARE_SIZE - PIECE_SIZE) / 2,
+                    y * SQUARE_SIZE + (SQUARE_SIZE - PIECE_SIZE) / 2,
+                    PIECE_SIZE,
+                    PIECE_SIZE
+                };
+
+                DrawTexturePro(handler.TextureByPiece(pieceType),
+                    Rectangle{ 0.0f, 0.0f, static_cast<float>(handler.TextureByPiece(pieceType).width), static_cast<float>(handler.TextureByPiece(pieceType).height) },
+                    destRec, 
+                    Vector2{ 0.0f, 0.0f },
+                    0.0f, 
+                    color);
             }
         }
     }
@@ -81,5 +99,3 @@ int Board::operator[](int index) const {
 int& Board::operator[](int index) {
     return board[index];
 }
-
-

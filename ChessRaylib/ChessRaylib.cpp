@@ -4,6 +4,7 @@
 #include <string>
 #include "FENUtility.h"
 #include "piece.h"
+#include "TextureHandler.h"
 
 void HandleInput(Board& board);
 void HandlePieceSelection(Board& board);
@@ -21,6 +22,13 @@ int main(void)
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
+
+
+    TextureHandler& handler = TextureHandler::getInstance();
+
+    handler.LoadTextures();
+   
+
     SetTargetFPS(30);
 
     // Main game loop
@@ -29,7 +37,9 @@ int main(void)
         HandleInput(board);
 
         BeginDrawing();
+
         ClearBackground(DARKGRAY);
+
         board.Draw();
         EndDrawing();
     }
