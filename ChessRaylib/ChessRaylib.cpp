@@ -8,6 +8,7 @@
 
 void HandleInput(Board& board);
 void HandlePieceSelection(Board& board);
+void CancelSelection(Board& board);
 
 int main(void)
 {
@@ -53,12 +54,29 @@ void HandleInput(Board& board)
 {
     if (IsMouseButtonPressed(0))
     {
-        HandlePieceSelection(board);
+        if (board.selectedPieceIndex != -1)
+        {
+            int mouseX = GetMouseX();
+            int mouseY = GetMouseY();
+
+            if (board.selectedPieceIndex == board.TryToGetPieceUnderMouse(mouseX, mouseY))
+            {
+                CancelSelection(board);
+                return;
+            }
+
+            std::cout << "making a move " << std::endl;
+        }
+        else
+        {
+            HandlePieceSelection(board);
+        }
+        
     }
 
     if (IsMouseButtonPressed(1))
     {
-        board.SetSelectedPiece(-1);
+        CancelSelection(board);
     }
 }
 
@@ -70,10 +88,14 @@ void HandlePieceSelection(Board& board)
 
     if (index != -1) // Assuming -1 is returned if no piece is found
     {
-       
         int piece = board[index];
         if (Piece::PieceType(piece) == Piece::None) return;
         std::cout << "Piece selected at index: " << index << std::endl;
         board.SetSelectedPiece(index);
     }
+}
+
+void CancelSelection(Board& board)
+{
+    board.SetSelectedPiece(-1);
 }

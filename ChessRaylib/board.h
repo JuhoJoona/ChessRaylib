@@ -20,9 +20,11 @@ public:
 
     int& operator[](int index);
 
+    int selectedPieceIndex;
+
 private:
     int board[64];
-    int selectedPieceIndex;
+    
     std::vector<int> legalMoves;
 };
 
