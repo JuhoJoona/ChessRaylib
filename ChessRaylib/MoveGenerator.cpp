@@ -9,6 +9,8 @@ std::vector<Move> MoveGenerator::GenerateMoves(const Board& board) {
     for (int startSquare = 0; startSquare < 64; startSquare++) {
         int piece = board[startSquare];
 
+        std::cout << piece << std::endl;
+
         if (Piece::IsType(piece, Piece::Bishop) || Piece::IsType(piece, Piece::Rook) || Piece::IsType(piece, Piece::Queen)) {
             GenerateSlidingMoves(board, startSquare, moves, piece);
         }
@@ -30,6 +32,10 @@ std::vector<Move> MoveGenerator::GenerateMoves(const Board& board) {
 
 
 void MoveGenerator::GenerateSlidingMoves(const Board& board, int startSquare, std::vector<Move>& moves, int pieceType) {
+
+    int DirectionOffsets[8] = { 8, -8, -1, 1, 7, -7, 9, -9 };
+
+    // Define the direction range based on piece type
     int startDirIndex = 0;
     int endDirIndex = 8;
 
@@ -40,30 +46,31 @@ void MoveGenerator::GenerateSlidingMoves(const Board& board, int startSquare, st
         endDirIndex = 4;
     }
 
+    // Iterate over each direction
     for (int directionIndex = startDirIndex; directionIndex < endDirIndex; directionIndex++) {
+        // Continue moving in the current direction until an edge or obstacle is encountered
         for (int n = 1; n <= NumSquaresToEdge[startSquare][directionIndex]; n++) {
             int targetSquare = startSquare + DirectionOffsets[directionIndex] * n;
+
             int pieceOnTargetSquare = board[targetSquare];
 
             if (pieceOnTargetSquare == Piece::None) {
+                // Add the move if the target square is empty
                 moves.emplace_back(startSquare, targetSquare);
             }
             else {
+                moves.emplace_back(startSquare, targetSquare);
+                // If the target square is occupied, check if it's an enemy piece
                 if (Piece::Color(pieceOnTargetSquare) != Piece::Color(pieceType)) {
                     moves.emplace_back(startSquare, targetSquare);
                 }
-                break; 
-            }
-
-            if (Piece::IsType(pieceType, Piece::Queen)) {
-                continue;
-            }
-            else {
-                break; 
+                break; // Stop looking further in this direction
             }
         }
     }
 }
+
+
 
 
 void MoveGenerator::GenerateKingMoves(const Board& board, std::vector<Move>& moves) {

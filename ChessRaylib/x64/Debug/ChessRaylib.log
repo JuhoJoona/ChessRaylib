@@ -1,6 +1,4 @@
-﻿  MoveGenerator.cpp
-x64\Debug\Move.obj : warning LNK4042: object specified more than once; extras ignored
-x64\Debug\MoveGenerator.obj : warning LNK4042: object specified more than once; extras ignored
+﻿  ChessRaylib.cpp
   ChessRaylib.vcxproj -> C:\Users\jjoon\repos\ChessRaylib\x64\Debug\ChessRaylib.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

@@ -63,7 +63,7 @@ void HandleInput(Board& board)
 
             int square = board.TryToGetSquareUnderMouse(mouseX, mouseY);
 
-            if (board.selectedPiece == square)
+            if (board.selectedPieceIndex == square)
             {
                 CancelSelection(board);
                 return;
@@ -109,7 +109,10 @@ void TryToMakeMove(Board& board, int square) {
     MoveGenerator moveGene;
     std::vector<Move> moves = moveGene.GenerateMoves(board);
 
-    std::cout << "moves count: " << moves.size() << std::endl;
+    for (const auto& move : moves) {
+        //std::cout << "Move from (" << move.StartingSquare << ") to (" << move.TargetSquare << ")" << std::endl;
+    }
+
     
 
     int startSquare = board.selectedPieceIndex;
@@ -121,14 +124,6 @@ void TryToMakeMove(Board& board, int square) {
             return;
         }
     }
-
-    /*
-           Move move(startSquare, targetSquare);
-
-        board.MakeMove(move);
-
-    
-    */
  
     // If no valid move was found, deselect the piece
     CancelSelection(board);
