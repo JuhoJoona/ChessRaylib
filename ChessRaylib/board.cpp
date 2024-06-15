@@ -2,6 +2,7 @@
 #include "piece.h"
 #include "TextureHandler.h"
 #include "raylib.h"
+#include <iostream>
 
 Board::Board(int boardArray[64]) : selectedPiece(-1) {
     for (int i = 0; i < 64; i++) {
@@ -80,9 +81,17 @@ void Board::SetSelectedPiece(int piece, int pieceIndex) {
 
 }
 
-void Board::MakeMove(Move move)
-{
+void Board::MakeMove(Move move) {
+    // Move the piece
+    board[move.TargetSquare] = board[move.StartingSquare];
+    // Clear the source square
+    board[move.StartingSquare] = 0;
 
+    // Debug output
+    std::cout << "Moved piece from " << move.StartingSquare << " to " << move.TargetSquare << std::endl;
+
+    // Deselect the piece
+    SetSelectedPiece(-1, -1);
 }
 
 // Operator[] to access board elements

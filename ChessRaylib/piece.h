@@ -24,7 +24,8 @@ public:
      static int PieceType(int piece);
      static bool IsRookOrQueen(int piece);
      static bool IsSlidingPiece(int piece);
-
+     static bool IsType(int piece, int PieceToCompare);
+     static bool IsColor(int piece, int color);
 	
     
 

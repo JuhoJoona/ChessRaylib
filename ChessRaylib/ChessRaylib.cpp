@@ -109,17 +109,27 @@ void TryToMakeMove(Board& board, int square) {
     MoveGenerator moveGene;
     std::vector<Move> moves = moveGene.GenerateMoves(board);
 
-    int startSquare = board.selectedPiece;
+    std::cout << "moves count: " << moves.size() << std::endl;
+    
+
+    int startSquare = board.selectedPieceIndex;
     int targetSquare = square;
 
     for (const Move& move : moves) {
         if (move.StartingSquare == startSquare && move.TargetSquare == targetSquare) {
             board.MakeMove(move);
-            board.SetSelectedPiece(-1, -1); 
             return;
         }
     }
 
+    /*
+           Move move(startSquare, targetSquare);
+
+        board.MakeMove(move);
+
+    
+    */
+ 
     // If no valid move was found, deselect the piece
     CancelSelection(board);
 }

@@ -17,3 +17,16 @@ bool Piece::IsSlidingPiece(int piece) {
     int pieceType = PieceType(piece);
     return pieceType == Bishop || pieceType == Rook || pieceType == Queen;
 }
+
+bool Piece::IsType(int piece, int PieceToCompare)
+{
+    return PieceType(piece) == PieceType(PieceToCompare);
+}
+
+
+bool Piece::IsColor(int piece, int color)
+{
+    int pieceColor = Piece::Color(piece);
+
+    return pieceColor == color;
+}
