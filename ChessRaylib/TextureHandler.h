@@ -31,9 +31,9 @@ private:
     // File paths for textures
     const char* KingPath = "Textures/w_king_1x_ns.png";
     const char* PawnPath = "Textures/w_pawn_1x_ns.png";
-    const char* KnightPath = "Textures/w_rook_1x_ns.png";
+    const char* KnightPath = "Textures/w_knight_1x_ns.png";
     const char* BishopPath = "Textures/w_bishop_1x_ns.png";
-    const char* RookPath = "Textures/w_knight_1x_ns.png";
+    const char* RookPath = "Textures/w_rook_1x_ns.png";
     const char* QueenPath = "Textures/w_queen_1x_ns.png";
 };
 

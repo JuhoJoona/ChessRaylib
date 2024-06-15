@@ -32,18 +32,18 @@ std::vector<Move> MoveGenerator::GenerateMoves(const Board& board) {
 
 
 void MoveGenerator::GenerateSlidingMoves(const Board& board, int startSquare, std::vector<Move>& moves, int pieceType) {
-
+    // Define direction offsets for sliding pieces
     int DirectionOffsets[8] = { 8, -8, -1, 1, 7, -7, 9, -9 };
 
-    // Define the direction range based on piece type
+    // Determine direction range based on the piece type
     int startDirIndex = 0;
     int endDirIndex = 8;
 
     if (Piece::IsType(pieceType, Piece::Bishop)) {
-        startDirIndex = 4;
+        startDirIndex = 4; // Bishops move diagonally
     }
     else if (Piece::IsType(pieceType, Piece::Rook)) {
-        endDirIndex = 4;
+        endDirIndex = 4; // Rooks move vertically and horizontally
     }
 
     // Iterate over each direction
@@ -52,6 +52,11 @@ void MoveGenerator::GenerateSlidingMoves(const Board& board, int startSquare, st
         for (int n = 1; n <= NumSquaresToEdge[startSquare][directionIndex]; n++) {
             int targetSquare = startSquare + DirectionOffsets[directionIndex] * n;
 
+            // Ensure the target square is within board limits
+            if (targetSquare < 0 || targetSquare >= 64) {
+                break; // Out of board bounds
+            }
+
             int pieceOnTargetSquare = board[targetSquare];
 
             if (pieceOnTargetSquare == Piece::None) {
@@ -59,7 +64,6 @@ void MoveGenerator::GenerateSlidingMoves(const Board& board, int startSquare, st
                 moves.emplace_back(startSquare, targetSquare);
             }
             else {
-                moves.emplace_back(startSquare, targetSquare);
                 // If the target square is occupied, check if it's an enemy piece
                 if (Piece::Color(pieceOnTargetSquare) != Piece::Color(pieceType)) {
                     moves.emplace_back(startSquare, targetSquare);
@@ -69,6 +73,7 @@ void MoveGenerator::GenerateSlidingMoves(const Board& board, int startSquare, st
         }
     }
 }
+
 
 
 

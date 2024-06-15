@@ -94,7 +94,7 @@ void HandlePieceSelection(Board& board) {
         int piece = board[index];
         if (Piece::PieceType(piece) == Piece::None) return;
 
-        std::cout << "Piece selected: " << Piece::PieceType(piece) << std::endl;
+        std::cout << "Piece selected: " << piece << std::endl;
         board.SetSelectedPiece(piece, index);
     }
 }
