@@ -33,6 +33,18 @@
     <ClCompile Include="TextureHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MoveGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Move.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Move.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="board.h">

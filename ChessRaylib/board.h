@@ -3,6 +3,7 @@
 
 #include "raylib.h"
 #include <vector>
+#include "Move.h"
 
 class Board {
 public:
@@ -11,15 +12,18 @@ public:
 
     Board(int boardArray[64]);
     void Draw() const;
-    int TryToGetPieceUnderMouse(int mouseX, int mouseY);
-    void SetSelectedPiece(int index);
+    int TryToGetSquareUnderMouse(int mouseX, int mouseY);
+    void SetSelectedPiece(int piece, int pieceIndex);
     std::vector<int> CalculateLegalMoves(int pieceIndex);
+    void MakeMove(Move move);
+    int FindPieceIndex(int piece) const;
 
      // Operator[] to access board elements
     int operator[](int index) const;
 
     int& operator[](int index);
 
+    int selectedPiece;
     int selectedPieceIndex;
 
 private:

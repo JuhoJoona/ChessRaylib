@@ -5,10 +5,12 @@
 #include "FENUtility.h"
 #include "piece.h"
 #include "TextureHandler.h"
+#include "MoveGenerator.h"
 
 void HandleInput(Board& board);
 void HandlePieceSelection(Board& board);
 void CancelSelection(Board& board);
+void TryToMakeMove(Board& board, int square);
 
 int main(void)
 {
@@ -54,18 +56,21 @@ void HandleInput(Board& board)
 {
     if (IsMouseButtonPressed(0))
     {
-        if (board.selectedPieceIndex != -1)
+        if (board.selectedPiece != -1)
         {
             int mouseX = GetMouseX();
             int mouseY = GetMouseY();
 
-            if (board.selectedPieceIndex == board.TryToGetPieceUnderMouse(mouseX, mouseY))
+            int square = board.TryToGetSquareUnderMouse(mouseX, mouseY);
+
+            if (board.selectedPiece == square)
             {
                 CancelSelection(board);
                 return;
             }
 
             std::cout << "making a move " << std::endl;
+            TryToMakeMove(board, square);
         }
         else
         {
@@ -80,22 +85,41 @@ void HandleInput(Board& board)
     }
 }
 
-void HandlePieceSelection(Board& board)
-{
+void HandlePieceSelection(Board& board) {
     int mouseX = GetMouseX();
     int mouseY = GetMouseY();
-    int index = board.TryToGetPieceUnderMouse(mouseX, mouseY);
+    int index = board.TryToGetSquareUnderMouse(mouseX, mouseY);
 
-    if (index != -1) // Assuming -1 is returned if no piece is found
-    {
+    if (index != -1) {
         int piece = board[index];
         if (Piece::PieceType(piece) == Piece::None) return;
-        std::cout << "Piece selected at index: " << index << std::endl;
-        board.SetSelectedPiece(index);
+
+        std::cout << "Piece selected: " << Piece::PieceType(piece) << std::endl;
+        board.SetSelectedPiece(piece, index);
     }
 }
 
 void CancelSelection(Board& board)
 {
-    board.SetSelectedPiece(-1);
+    board.SetSelectedPiece(-1, -1);
+}
+
+
+void TryToMakeMove(Board& board, int square) {
+    MoveGenerator moveGene;
+    std::vector<Move> moves = moveGene.GenerateMoves(board);
+
+    int startSquare = board.selectedPiece;
+    int targetSquare = square;
+
+    for (const Move& move : moves) {
+        if (move.StartingSquare == startSquare && move.TargetSquare == targetSquare) {
+            board.MakeMove(move);
+            board.SetSelectedPiece(-1, -1); 
+            return;
+        }
+    }
+
+    // If no valid move was found, deselect the piece
+    CancelSelection(board);
 }
