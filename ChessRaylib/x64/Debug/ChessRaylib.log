@@ -1,6 +1,4 @@
-﻿  ChessRaylib.cpp
-  TextureHandler.cpp
-  Generating Code...
+﻿  MoveGenerator.cpp
   ChessRaylib.vcxproj -> C:\Users\jjoon\repos\ChessRaylib\x64\Debug\ChessRaylib.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

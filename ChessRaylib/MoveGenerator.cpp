@@ -9,7 +9,6 @@ std::vector<Move> MoveGenerator::GenerateMoves(const Board& board) {
     for (int startSquare = 0; startSquare < 64; startSquare++) {
         int piece = board[startSquare];
 
-        std::cout << piece << std::endl;
 
         if (Piece::IsType(piece, Piece::Bishop) || Piece::IsType(piece, Piece::Rook) || Piece::IsType(piece, Piece::Queen)) {
             GenerateSlidingMoves(board, startSquare, moves, piece);
@@ -59,6 +58,8 @@ void MoveGenerator::GenerateSlidingMoves(const Board& board, int startSquare, st
 
             int pieceOnTargetSquare = board[targetSquare];
 
+            std::cout << pieceOnTargetSquare << std::endl;
+
             if (pieceOnTargetSquare == Piece::None) {
                 // Add the move if the target square is empty
                 moves.emplace_back(startSquare, targetSquare);
@@ -79,6 +80,9 @@ void MoveGenerator::GenerateSlidingMoves(const Board& board, int startSquare, st
 
 
 void MoveGenerator::GenerateKingMoves(const Board& board, std::vector<Move>& moves) {
+
+   
+
 
 }
 
@@ -153,7 +157,34 @@ void MoveGenerator::GeneratePawnMoves(const Board& board, std::vector<Move>& mov
 
 
 void MoveGenerator::GenerateKnightMoves(const Board& board, std::vector<Move>& moves) {
+    int KnightOffsets[8] = { 17, 15, 10, 6, -6, -10, -15, -17 };
 
+    for (int startSquare = 0; startSquare < 64; startSquare++) {
+        int piece = board[startSquare];
+
+        if (!Piece::IsType(piece, Piece::Knight)) continue;
+
+        for (int offset : KnightOffsets) {
+            int targetSquare = startSquare + offset;
+
+            if (targetSquare < 0 || targetSquare >= 64) continue;
+
+            int startFile = startSquare % 8;
+            int startRank = startSquare / 8;
+            int targetFile = targetSquare % 8;
+            int targetRank = targetSquare / 8;
+
+            if ((abs(targetFile - startFile) == 2 && abs(targetRank - startRank) == 1) ||
+                (abs(targetFile - startFile) == 1 && abs(targetRank - startRank) == 2)) {
+
+                int pieceOnTargetSquare = board[targetSquare];
+
+                if (pieceOnTargetSquare == Piece::None || Piece::Color(pieceOnTargetSquare) != Piece::Color(piece)) {
+                    moves.emplace_back(startSquare, targetSquare);
+                }
+            }
+        }
+    }
 }
 
 void MoveGenerator::CalculateNumSquaresToEdge() {

@@ -87,9 +87,6 @@ void Board::MakeMove(Move move) {
     // Clear the source square
     board[move.StartingSquare] = 0;
 
-    // Debug output
-    std::cout << "Moved piece from " << move.StartingSquare << " to " << move.TargetSquare << std::endl;
-
     // Deselect the piece
     SetSelectedPiece(-1, -1);
 }

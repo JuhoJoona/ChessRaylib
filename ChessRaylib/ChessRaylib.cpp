@@ -93,8 +93,7 @@ void HandlePieceSelection(Board& board) {
     if (index != -1) {
         int piece = board[index];
         if (Piece::PieceType(piece) == Piece::None) return;
-
-        std::cout << "Piece selected: " << piece << std::endl;
+;
         board.SetSelectedPiece(piece, index);
     }
 }
@@ -109,9 +108,7 @@ void TryToMakeMove(Board& board, int square) {
     MoveGenerator moveGene;
     std::vector<Move> moves = moveGene.GenerateMoves(board);
 
-    for (const auto& move : moves) {
-        //std::cout << "Move from (" << move.StartingSquare << ") to (" << move.TargetSquare << ")" << std::endl;
-    }
+
 
     
 
