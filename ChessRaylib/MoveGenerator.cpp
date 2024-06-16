@@ -31,29 +31,27 @@ std::vector<Move> MoveGenerator::GenerateMoves(const Board& board) {
 
 
 void MoveGenerator::GenerateSlidingMoves(const Board& board, int startSquare, std::vector<Move>& moves, int pieceType) {
-    // Define direction offsets for sliding pieces
+
     int DirectionOffsets[8] = { 8, -8, -1, 1, 7, -7, 9, -9 };
 
-    // Determine direction range based on the piece type
     int startDirIndex = 0;
     int endDirIndex = 8;
 
     if (Piece::IsType(pieceType, Piece::Bishop)) {
-        startDirIndex = 4; // Bishops move diagonally
+        startDirIndex = 4; 
     }
     else if (Piece::IsType(pieceType, Piece::Rook)) {
-        endDirIndex = 4; // Rooks move vertically and horizontally
+        endDirIndex = 4; 
     }
 
-    // Iterate over each direction
     for (int directionIndex = startDirIndex; directionIndex < endDirIndex; directionIndex++) {
-        // Continue moving in the current direction until an edge or obstacle is encountered
+
         for (int n = 1; n <= NumSquaresToEdge[startSquare][directionIndex]; n++) {
             int targetSquare = startSquare + DirectionOffsets[directionIndex] * n;
 
-            // Ensure the target square is within board limits
+
             if (targetSquare < 0 || targetSquare >= 64) {
-                break; // Out of board bounds
+                break; 
             }
 
             int pieceOnTargetSquare = board[targetSquare];
@@ -61,15 +59,15 @@ void MoveGenerator::GenerateSlidingMoves(const Board& board, int startSquare, st
             std::cout << pieceOnTargetSquare << std::endl;
 
             if (pieceOnTargetSquare == Piece::None) {
-                // Add the move if the target square is empty
+                
                 moves.emplace_back(startSquare, targetSquare);
             }
             else {
-                // If the target square is occupied, check if it's an enemy piece
+
                 if (Piece::Color(pieceOnTargetSquare) != Piece::Color(pieceType)) {
                     moves.emplace_back(startSquare, targetSquare);
                 }
-                break; // Stop looking further in this direction
+                break; 
             }
         }
     }
@@ -81,7 +79,27 @@ void MoveGenerator::GenerateSlidingMoves(const Board& board, int startSquare, st
 
 void MoveGenerator::GenerateKingMoves(const Board& board, std::vector<Move>& moves) {
 
-   
+    int KingOffsets[8] = { 8, -8, 1, -1, 9, -9, 7, -7 };
+
+
+    for (int startSquare = 0; startSquare < 64; startSquare++) {
+        int piece = board[startSquare];
+
+        if (!Piece::IsType(piece, Piece::King)) continue;
+
+        for (int offset : KingOffsets) {
+            int targetSquare = startSquare + offset;
+
+            if (targetSquare < 0 || targetSquare >= 64) continue;
+
+
+            int pieceOnTargetSquare = board[targetSquare];
+
+            if (pieceOnTargetSquare == Piece::None || Piece::Color(pieceOnTargetSquare) != Piece::Color(piece)) {
+                moves.emplace_back(startSquare, targetSquare);
+            }
+        }
+    }
 
 
 }
