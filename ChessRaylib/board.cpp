@@ -3,6 +3,7 @@
 #include "TextureHandler.h"
 #include "raylib.h"
 #include <iostream>
+#include "MoveGenerator.h"
 
 Board::Board(int boardArray[64]) : selectedPiece(-1) {
     for (int i = 0; i < 64; i++) {
@@ -22,6 +23,21 @@ void Board::Draw() const {
 
             if (index == selectedPieceIndex) {
                 squareColor = YELLOW;
+            }
+
+            //higlight legalmoves
+            if (selectedPieceIndex != -1) {
+
+                MoveGenerator moveGene;
+
+                std::vector<Move> legalMoves = moveGene.GenerateMoves(*this); // Generate legal moves
+
+                for (const Move& move : legalMoves) {
+                    if (move.StartingSquare == selectedPieceIndex && move.TargetSquare == index) {
+                        squareColor = GREEN; // Highlight legal move square
+                        break;
+                    }
+                }
             }
 
 

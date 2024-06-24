@@ -109,9 +109,6 @@ void TryToMakeMove(Board& board, int square) {
     std::vector<Move> moves = moveGene.GenerateMoves(board);
 
 
-
-    
-
     int startSquare = board.selectedPieceIndex;
     int targetSquare = square;
 
