@@ -1,14 +1,16 @@
 #include "MoveGenerator.h"
 #include <iostream>
 
-std::vector<Move> MoveGenerator::GenerateMoves(const Board& board) {
+std::vector<Move> MoveGenerator::GenerateMoves(const Board& board, int color) {
     std::vector<Move> moves;
 
     CalculateNumSquaresToEdge();
 
     for (int startSquare = 0; startSquare < 64; startSquare++) {
         int piece = board[startSquare];
-
+        
+        // Skip empty squares and opponent's pieces
+        if (piece == Piece::None || Piece::Color(piece) != color) continue;
 
         if (Piece::IsType(piece, Piece::Bishop) || Piece::IsType(piece, Piece::Rook) || Piece::IsType(piece, Piece::Queen)) {
             GenerateSlidingMoves(board, startSquare, moves, piece);
@@ -27,81 +29,68 @@ std::vector<Move> MoveGenerator::GenerateMoves(const Board& board) {
     return moves;
 }
 
-
-
-
 void MoveGenerator::GenerateSlidingMoves(const Board& board, int startSquare, std::vector<Move>& moves, int pieceType) {
+    // First verify there's actually a piece at the start square
+    if (board[startSquare] == Piece::None) return;
 
-    int DirectionOffsets[8] = { 8, -8, -1, 1, 7, -7, 9, -9 };
+    // Directions: North, South, West, East, NorthWest, SouthEast, NorthEast, SouthWest
+    int DirectionOffsets[8] = { -8, 8, -1, 1, -9, 9, -7, 7 };
 
     int startDirIndex = 0;
     int endDirIndex = 8;
 
     if (Piece::IsType(pieceType, Piece::Bishop)) {
-        startDirIndex = 4; 
+        startDirIndex = 4; // Start from diagonal directions
     }
     else if (Piece::IsType(pieceType, Piece::Rook)) {
-        endDirIndex = 4; 
+        endDirIndex = 4; // Only use orthogonal directions
     }
 
     for (int directionIndex = startDirIndex; directionIndex < endDirIndex; directionIndex++) {
-
         for (int n = 1; n <= NumSquaresToEdge[startSquare][directionIndex]; n++) {
             int targetSquare = startSquare + DirectionOffsets[directionIndex] * n;
-
-
-            if (targetSquare < 0 || targetSquare >= 64) {
-                break; 
-            }
-
             int pieceOnTargetSquare = board[targetSquare];
 
-            std::cout << pieceOnTargetSquare << std::endl;
-
-            if (pieceOnTargetSquare == Piece::None) {
-                
-                moves.emplace_back(startSquare, targetSquare);
+            // If square is occupied by friendly piece, stop looking in this direction
+            if (pieceOnTargetSquare != Piece::None && 
+                Piece::Color(pieceOnTargetSquare) == Piece::Color(board[startSquare])) {
+                break;
             }
-            else {
 
-                if (Piece::Color(pieceOnTargetSquare) != Piece::Color(pieceType)) {
-                    moves.emplace_back(startSquare, targetSquare);
-                }
-                break; 
+            moves.emplace_back(startSquare, targetSquare);
+
+            // If square is occupied by enemy piece, stop looking in this direction after capturing
+            if (pieceOnTargetSquare != Piece::None) {
+                break;
             }
         }
     }
 }
 
-
-
-
-
 void MoveGenerator::GenerateKingMoves(const Board& board, std::vector<Move>& moves) {
-
-    int KingOffsets[8] = { 8, -8, 1, -1, 9, -9, 7, -7 };
-
+    int KingOffsets[8] = { -8, 8, -1, 1, -9, 9, -7, 7 };
 
     for (int startSquare = 0; startSquare < 64; startSquare++) {
         int piece = board[startSquare];
-
         if (!Piece::IsType(piece, Piece::King)) continue;
 
+        int startFile = startSquare % 8;
+        
         for (int offset : KingOffsets) {
             int targetSquare = startSquare + offset;
-
             if (targetSquare < 0 || targetSquare >= 64) continue;
 
+            int targetFile = targetSquare % 8;
+            // Prevent wrapping around board edges
+            if (abs(targetFile - startFile) > 1) continue;
 
             int pieceOnTargetSquare = board[targetSquare];
-
-            if (pieceOnTargetSquare == Piece::None || Piece::Color(pieceOnTargetSquare) != Piece::Color(piece)) {
+            if (pieceOnTargetSquare == Piece::None || 
+                Piece::Color(pieceOnTargetSquare) != Piece::Color(piece)) {
                 moves.emplace_back(startSquare, targetSquare);
             }
         }
     }
-
-
 }
 
 void MoveGenerator::GeneratePawnMoves(const Board& board, std::vector<Move>& moves) {
@@ -206,24 +195,28 @@ void MoveGenerator::GenerateKnightMoves(const Board& board, std::vector<Move>& m
 }
 
 void MoveGenerator::CalculateNumSquaresToEdge() {
-    for (int file = 0; file < 8; file++) {
-        for (int rank = 0; rank < 8; rank++) {
-            int numNorth = 7 - rank;
-            int numSouth = rank;
-            int numWest = file;
-            int numEast = 7 - file;
+    for (int squareIndex = 0; squareIndex < 64; squareIndex++) {
+        int file = squareIndex % 8;  // column (file) index
+        int rank = squareIndex / 8;  // row (rank) index
 
-            int squareIndex = rank * 8 + file;
+        int numNorth = rank;  // Distance to north edge (top)
+        int numSouth = 7 - rank;  // Distance to south edge (bottom)
+        int numWest = file;  // Distance to west edge (left)
+        int numEast = 7 - file;  // Distance to east edge (right)
 
-            NumSquaresToEdge[squareIndex][0] = numSouth;
-            NumSquaresToEdge[squareIndex][1] = numWest;
-            NumSquaresToEdge[squareIndex][2] = numNorth;
-            NumSquaresToEdge[squareIndex][3] = numEast;
-            NumSquaresToEdge[squareIndex][4] = std::min(numNorth, numWest);
-            NumSquaresToEdge[squareIndex][5] = std::min(numSouth, numEast);
-            NumSquaresToEdge[squareIndex][6] = std::min(numNorth, numEast);
-            NumSquaresToEdge[squareIndex][7] = std::min(numSouth, numWest);
-        }
+        // Store distances in the array (matching DirectionOffsets order)
+        NumSquaresToEdge[squareIndex][0] = numNorth;  // North
+        NumSquaresToEdge[squareIndex][1] = numSouth;  // South
+        NumSquaresToEdge[squareIndex][2] = numWest;   // West
+        NumSquaresToEdge[squareIndex][3] = numEast;   // East
+        NumSquaresToEdge[squareIndex][4] = std::min(numNorth, numWest);  // Northwest
+        NumSquaresToEdge[squareIndex][5] = std::min(numSouth, numEast);  // Southeast
+        NumSquaresToEdge[squareIndex][6] = std::min(numNorth, numEast);  // Northeast
+        NumSquaresToEdge[squareIndex][7] = std::min(numSouth, numWest);  // Southwest
     }
 }
+
+
+
+
 

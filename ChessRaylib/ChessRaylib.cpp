@@ -69,7 +69,6 @@ void HandleInput(Board& board)
                 return;
             }
 
-            std::cout << "making a move " << std::endl;
             TryToMakeMove(board, square);
         }
         else
@@ -95,6 +94,7 @@ void HandlePieceSelection(Board& board) {
         if (Piece::PieceType(piece) == Piece::None) return;
 ;
         board.SetSelectedPiece(piece, index);
+        std::cout << index << std::endl;
     }
 }
 
@@ -106,8 +106,10 @@ void CancelSelection(Board& board)
 
 void TryToMakeMove(Board& board, int square) {
     MoveGenerator moveGene;
-    std::vector<Move> moves = moveGene.GenerateMoves(board);
-
+    // Get the color of the selected piece
+    int selectedPieceColor = Piece::Color(board.selectedPiece);
+    // Generate moves only for pieces of the selected color
+    std::vector<Move> moves = moveGene.GenerateMoves(board, selectedPieceColor);
 
     int startSquare = board.selectedPieceIndex;
     int targetSquare = square;

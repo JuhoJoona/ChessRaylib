@@ -27,10 +27,9 @@ void Board::Draw() const {
 
             //higlight legalmoves
             if (selectedPieceIndex != -1) {
-
                 MoveGenerator moveGene;
-
-                std::vector<Move> legalMoves = moveGene.GenerateMoves(*this); // Generate legal moves
+                int selectedPieceColor = Piece::Color(selectedPiece);
+                std::vector<Move> legalMoves = moveGene.GenerateMoves(*this, selectedPieceColor);
 
                 for (const Move& move : legalMoves) {
                     if (move.StartingSquare == selectedPieceIndex && move.TargetSquare == index) {
@@ -39,7 +38,6 @@ void Board::Draw() const {
                     }
                 }
             }
-
 
             DrawRectangle(x * SQUARE_SIZE, y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE, squareColor);
 

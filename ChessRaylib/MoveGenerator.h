@@ -10,7 +10,7 @@
 class MoveGenerator {
 public:
 
-    std::vector<Move> GenerateMoves(const Board& board);
+    std::vector<Move> GenerateMoves(const Board& board, int color);
 
 private:
     int NumSquaresToEdge[64][8];
