@@ -1,5 +1,4 @@
-#ifndef MOVEGENERATOR_H
-#define MOVEGENERATOR_H
+#pragma once
 
 #include "raylib.h"
 #include "piece.h"
@@ -9,19 +8,15 @@
 
 class MoveGenerator {
 public:
-
     std::vector<Move> GenerateMoves(const Board& board, int color);
 
 private:
-    int NumSquaresToEdge[64][8];
-
-    void CalculateNumSquaresToEdge();
-
-    // Helper methods for generating moves of different piece types
-    void GenerateSlidingMoves(const Board& board, int startSquare, std::vector<Move>& moves, int piece);
+    void GenerateSlidingMoves(const Board& board, int startSquare, std::vector<Move>& moves, int pieceType);
     void GenerateKingMoves(const Board& board, std::vector<Move>& moves);
     void GeneratePawnMoves(const Board& board, std::vector<Move>& moves);
     void GenerateKnightMoves(const Board& board, std::vector<Move>& moves);
-};
+    void CalculateNumSquaresToEdge();
+    bool IsSquareAttacked(const Board& board, int square, int attackingColor);
 
-#endif // MOVEGENERATOR_H
+    int NumSquaresToEdge[64][8];
+};

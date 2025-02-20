@@ -3,9 +3,13 @@
 
 std::vector<Move> MoveGenerator::GenerateMoves(const Board& board, int color) {
     std::vector<Move> moves;
-
     CalculateNumSquaresToEdge();
 
+    // Find our king's position
+    int kingSquare = board.getKingPosition(color);
+    bool isInCheck = IsSquareAttacked(board, kingSquare, (color == Piece::White) ? Piece::Black : Piece::White);
+
+    // Generate all possible moves first
     for (int startSquare = 0; startSquare < 64; startSquare++) {
         int piece = board[startSquare];
         
@@ -26,7 +30,45 @@ std::vector<Move> MoveGenerator::GenerateMoves(const Board& board, int color) {
         }
     }
 
-    return moves;
+    // If in check, filter moves to only those that get out of check
+    if (isInCheck) {
+        std::vector<Move> legalMoves;
+        for (const Move& move : moves) {
+            // Create a temporary board to test the move
+            Board tempBoard = board;
+            
+            // Make the move on the temporary board
+            tempBoard[move.TargetSquare] = tempBoard[move.StartingSquare];
+            tempBoard[move.StartingSquare] = Piece::None;
+            
+            // Find the king's new position (in case this was a king move)
+            int newKingSquare = Piece::IsType(board[move.StartingSquare], Piece::King) ? 
+                move.TargetSquare : kingSquare;
+            
+            // If after making this move we're not in check anymore, it's a legal move
+            if (!IsSquareAttacked(tempBoard, newKingSquare, (color == Piece::White) ? Piece::Black : Piece::White)) {
+                legalMoves.push_back(move);
+            }
+        }
+        return legalMoves;
+    }
+    
+    // If not in check, filter moves that would put us in check
+    std::vector<Move> legalMoves;
+    for (const Move& move : moves) {
+        Board tempBoard = board;
+        tempBoard[move.TargetSquare] = tempBoard[move.StartingSquare];
+        tempBoard[move.StartingSquare] = Piece::None;
+        
+        int newKingSquare = Piece::IsType(board[move.StartingSquare], Piece::King) ? 
+            move.TargetSquare : kingSquare;
+            
+        if (!IsSquareAttacked(tempBoard, newKingSquare, (color == Piece::White) ? Piece::Black : Piece::White)) {
+            legalMoves.push_back(move);
+        }
+    }
+
+    return legalMoves;
 }
 
 void MoveGenerator::GenerateSlidingMoves(const Board& board, int startSquare, std::vector<Move>& moves, int pieceType) {
@@ -214,6 +256,82 @@ void MoveGenerator::CalculateNumSquaresToEdge() {
         NumSquaresToEdge[squareIndex][6] = std::min(numNorth, numEast);  // Northeast
         NumSquaresToEdge[squareIndex][7] = std::min(numSouth, numWest);  // Southwest
     }
+}
+
+bool MoveGenerator::IsSquareAttacked(const Board& board, int square, int attackingColor) {
+    // Check for attacking pawns
+    int pawnDirection = (attackingColor == Piece::White) ? -1 : 1;
+    int file = square % 8;
+    
+    // Check left capture
+    if (file > 0) {
+        int attackSquare = square + (pawnDirection * 8) - 1;
+        if (attackSquare >= 0 && attackSquare < 64) {
+            int piece = board[attackSquare];
+            if (Piece::IsType(piece, Piece::Pawn) && Piece::Color(piece) == attackingColor) {
+                return true;
+            }
+        }
+    }
+    
+    // Check right capture
+    if (file < 7) {
+        int attackSquare = square + (pawnDirection * 8) + 1;
+        if (attackSquare >= 0 && attackSquare < 64) {
+            int piece = board[attackSquare];
+            if (Piece::IsType(piece, Piece::Pawn) && Piece::Color(piece) == attackingColor) {
+                return true;
+            }
+        }
+    }
+
+    // Check for attacking knights
+    int KnightOffsets[8] = { 17, 15, 10, 6, -6, -10, -15, -17 };
+    for (int offset : KnightOffsets) {
+        int targetSquare = square + offset;
+        if (targetSquare >= 0 && targetSquare < 64) {
+            int piece = board[targetSquare];
+            if (Piece::IsType(piece, Piece::Knight) && Piece::Color(piece) == attackingColor) {
+                return true;
+            }
+        }
+    }
+
+    // Check for attacking sliding pieces (Queen, Rook, Bishop)
+    int DirectionOffsets[8] = { -8, 8, -1, 1, -9, 9, -7, 7 };
+    for (int directionIndex = 0; directionIndex < 8; directionIndex++) {
+        for (int n = 1; n <= NumSquaresToEdge[square][directionIndex]; n++) {
+            int targetSquare = square + DirectionOffsets[directionIndex] * n;
+            int piece = board[targetSquare];
+            
+            if (piece != Piece::None) {
+                if (Piece::Color(piece) == attackingColor) {
+                    // Check if this piece can attack along this direction
+                    bool isDiagonal = directionIndex >= 4;
+                    if ((Piece::IsType(piece, Piece::Queen)) ||
+                        (Piece::IsType(piece, Piece::Rook) && !isDiagonal) ||
+                        (Piece::IsType(piece, Piece::Bishop) && isDiagonal)) {
+                        return true;
+                    }
+                }
+                break;
+            }
+        }
+    }
+
+    // Check for attacking king
+    int KingOffsets[8] = { -8, 8, -1, 1, -9, 9, -7, 7 };
+    for (int offset : KingOffsets) {
+        int targetSquare = square + offset;
+        if (targetSquare >= 0 && targetSquare < 64) {
+            int piece = board[targetSquare];
+            if (Piece::IsType(piece, Piece::King) && Piece::Color(piece) == attackingColor) {
+                return true;
+            }
+        }
+    }
+
+    return false;
 }
 
 

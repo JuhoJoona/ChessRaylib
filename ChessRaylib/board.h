@@ -17,6 +17,7 @@ public:
     std::vector<int> CalculateLegalMoves(int pieceIndex);
     void MakeMove(Move move);
     int FindPieceIndex(int piece) const;
+    int getKingPosition(int color) const;
 
      // Operator[] to access board elements
     int operator[](int index) const;

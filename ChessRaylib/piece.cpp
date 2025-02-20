@@ -30,3 +30,28 @@ bool Piece::IsColor(int piece, int color)
 
     return pieceColor == color;
 }
+
+bool Piece::HasMoved(int piece)
+{
+    return piece & Piece::hasMovedMask;
+}
+
+bool Piece::IsChecked(int piece) {
+
+    return piece & Piece::isCheckedMask;
+
+}
+int Piece::SetHasMoved(int piece) {
+
+    return piece | hasMovedMask;
+
+}
+
+int Piece::SetChecked(int piece, bool checked) {
+    if (checked) {
+        return piece | isCheckedMask;
+    }
+    else {
+        return piece & ~isCheckedMask;
+    }
+}

@@ -78,6 +78,16 @@ int Board::FindPieceIndex(int piece) const {
     return -1; // Return -1 if the piece is not found
 }
 
+int Board::getKingPosition(int color) const {
+    for (int square = 0; square < 64; square++) {
+        int piece = board[square];
+        if (Piece::IsType(piece, Piece::King) && Piece::Color(piece) == color) {
+            return square;
+            break;
+        }
+    }
+}
+
 int Board::TryToGetSquareUnderMouse(int mouseX, int mouseY) {
     int tgtRow = mouseY / SQUARE_SIZE;
     int tgtCol = mouseX / SQUARE_SIZE;
@@ -98,6 +108,10 @@ void Board::SetSelectedPiece(int piece, int pieceIndex) {
 void Board::MakeMove(Move move) {
     // Move the piece
     board[move.TargetSquare] = board[move.StartingSquare];
+
+    // Set has moved state
+    Piece::SetHasMoved(board[move.TargetSquare]);
+        
     // Clear the source square
     board[move.StartingSquare] = 0;
 
