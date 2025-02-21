@@ -1,6 +1,7 @@
 C:\Users\jjoon\repos\ChessRaylib\ChessRaylib\board.cpp;C:\Users\jjoon\repos\ChessRaylib\ChessRaylib\x64\Debug\board.obj
 C:\Users\jjoon\repos\ChessRaylib\ChessRaylib\ChessRaylib.cpp;C:\Users\jjoon\repos\ChessRaylib\ChessRaylib\x64\Debug\ChessRaylib.obj
 C:\Users\jjoon\repos\ChessRaylib\ChessRaylib\FENUtility.cpp;C:\Users\jjoon\repos\ChessRaylib\ChessRaylib\x64\Debug\FENUtility.obj
+C:\Users\jjoon\repos\ChessRaylib\ChessRaylib\GameState.cpp;C:\Users\jjoon\repos\ChessRaylib\ChessRaylib\x64\Debug\GameState.obj
 C:\Users\jjoon\repos\ChessRaylib\ChessRaylib\Move.cpp;C:\Users\jjoon\repos\ChessRaylib\ChessRaylib\x64\Debug\Move.obj
 C:\Users\jjoon\repos\ChessRaylib\ChessRaylib\Move.h;C:\Users\jjoon\repos\ChessRaylib\ChessRaylib\x64\Debug\Move.obj
 C:\Users\jjoon\repos\ChessRaylib\ChessRaylib\MoveGenerator.cpp;C:\Users\jjoon\repos\ChessRaylib\ChessRaylib\x64\Debug\MoveGenerator.obj

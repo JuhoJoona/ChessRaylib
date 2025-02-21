@@ -1,4 +1,8 @@
-﻿  MoveGenerator.cpp
+﻿  ChessRaylib.cpp
+  GameState.cpp
+  MoveGenerator.cpp
+  MoveGenerator.h
+  Generating Code...
   ChessRaylib.vcxproj -> C:\Users\jjoon\repos\ChessRaylib\x64\Debug\ChessRaylib.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

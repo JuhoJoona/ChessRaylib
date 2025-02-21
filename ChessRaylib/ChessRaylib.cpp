@@ -6,11 +6,13 @@
 #include "piece.h"
 #include "TextureHandler.h"
 #include "MoveGenerator.h"
+#include "GameState.h"
 
-void HandleInput(Board& board);
-void HandlePieceSelection(Board& board);
+
+void HandleInput(Board& board, GameState& state);
+void HandlePieceSelection(Board& board, GameState& state);
 void CancelSelection(Board& board);
-void TryToMakeMove(Board& board, int square);
+void TryToMakeMove(Board& board, int square, GameState& state);
 
 int main(void)
 {
@@ -22,6 +24,8 @@ int main(void)
     FENUtility::LoadPositionFromFEN(boardArray, startFen);
 
     Board board(boardArray);
+
+    GameState gameState(board, GameState::PlayerType::Human, GameState::PlayerType::Human);
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
@@ -37,7 +41,7 @@ int main(void)
     // Main game loop
     while (!WindowShouldClose())
     {
-        HandleInput(board);
+        HandleInput(board, gameState);
 
         BeginDrawing();
 
@@ -52,7 +56,7 @@ int main(void)
     return 0;
 }
 
-void HandleInput(Board& board)
+void HandleInput(Board& board, GameState& state)
 {
     if (IsMouseButtonPressed(0))
     {
@@ -69,11 +73,11 @@ void HandleInput(Board& board)
                 return;
             }
 
-            TryToMakeMove(board, square);
+            TryToMakeMove(board, square, state);
         }
         else
         {
-            HandlePieceSelection(board);
+            HandlePieceSelection(board, state);
         }
         
     }
@@ -84,14 +88,20 @@ void HandleInput(Board& board)
     }
 }
 
-void HandlePieceSelection(Board& board) {
+void HandlePieceSelection(Board& board, GameState& state) {
     int mouseX = GetMouseX();
     int mouseY = GetMouseY();
     int index = board.TryToGetSquareUnderMouse(mouseX, mouseY);
 
     if (index != -1) {
         int piece = board[index];
-        if (Piece::PieceType(piece) == Piece::None) return;
+        if (piece == Piece::None) return;
+
+        // Only allow selecting pieces of current player's color
+
+        bool isWhitePiece = Piece::Color(piece) == Piece::White;
+
+        if (isWhitePiece != state.IsWhiteTurn()) return;
 ;
         board.SetSelectedPiece(piece, index);
         std::cout << index << std::endl;
@@ -104,7 +114,7 @@ void CancelSelection(Board& board)
 }
 
 
-void TryToMakeMove(Board& board, int square) {
+void TryToMakeMove(Board& board, int square, GameState& state) {
     MoveGenerator moveGene;
     // Get the color of the selected piece
     int selectedPieceColor = Piece::Color(board.selectedPiece);
@@ -116,7 +126,7 @@ void TryToMakeMove(Board& board, int square) {
 
     for (const Move& move : moves) {
         if (move.StartingSquare == startSquare && move.TargetSquare == targetSquare) {
-            board.MakeMove(move);
+            state.TryMakeMove(move, moveGene);
             return;
         }
     }

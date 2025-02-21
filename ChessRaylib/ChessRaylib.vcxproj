@@ -130,6 +130,7 @@
     <ClCompile Include="board.cpp" />
     <ClCompile Include="ChessRaylib.cpp" />
     <ClCompile Include="FENUtility.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="Move.h" />
     <ClCompile Include="MoveGenerator.cpp" />
@@ -140,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="board.h" />
     <ClInclude Include="FENUtility.h" />
+    <ClInclude Include="GameState.h" />
     <ClInclude Include="piece.h" />
     <ClInclude Include="TextureHandler.h" />
   </ItemGroup>

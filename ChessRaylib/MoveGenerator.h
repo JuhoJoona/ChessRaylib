@@ -9,6 +9,7 @@
 class MoveGenerator {
 public:
     std::vector<Move> GenerateMoves(const Board& board, int color);
+    bool IsSquareAttacked(const Board& board, int square, int attackingColor);
 
 private:
     void GenerateSlidingMoves(const Board& board, int startSquare, std::vector<Move>& moves, int pieceType);
@@ -16,7 +17,6 @@ private:
     void GeneratePawnMoves(const Board& board, std::vector<Move>& moves);
     void GenerateKnightMoves(const Board& board, std::vector<Move>& moves);
     void CalculateNumSquaresToEdge();
-    bool IsSquareAttacked(const Board& board, int square, int attackingColor);
 
     int NumSquaresToEdge[64][8];
 };
