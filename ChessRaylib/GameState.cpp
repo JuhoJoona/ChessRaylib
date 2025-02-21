@@ -77,11 +77,9 @@ bool GameState::IsCheckmate() {
     if (!isInCheck) {
         return false;
     }
-    
-    // If we are in check, see if we have any legal moves
+
     std::vector<Move> legalMoves = moveGenerator.GenerateMoves(board, currentColor);
-    
-    // If we have no legal moves and we're in check, it's checkmate
+
     return legalMoves.empty();
 }
 
