@@ -109,6 +109,27 @@ void Board::MakeMove(Move move) {
     // Move the piece
     board[move.TargetSquare] = board[move.StartingSquare];
 
+    //Promotion
+    int piece = board[move.TargetSquare];
+
+    if (Piece::IsType(piece, Piece::Pawn)) {
+
+        int rank = move.TargetSquare / 8; 
+
+        if ((Piece::Color(piece) == Piece::White && rank == 0) ||
+
+            (Piece::Color(piece) == Piece::Black && rank == 7)) {
+
+            // TODO: allow other pieces
+
+            int color = Piece::Color(piece);
+
+            board[move.TargetSquare] = Piece::Queen | color;
+
+        }
+    
+    }
+
     // Set has moved state
     Piece::SetHasMoved(board[move.TargetSquare]);
         

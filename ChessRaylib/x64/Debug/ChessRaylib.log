@@ -1,4 +1,5 @@
-﻿  MoveGenerator.cpp
+﻿  ChessRaylib.cpp
+C:\Users\jjoon\repos\ChessRaylib\ChessRaylib\ChessRaylib.cpp(84,71): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   ChessRaylib.vcxproj -> C:\Users\jjoon\repos\ChessRaylib\x64\Debug\ChessRaylib.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

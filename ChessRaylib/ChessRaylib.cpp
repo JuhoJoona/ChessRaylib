@@ -26,7 +26,7 @@ int main(void)
 
     Board board(boardArray);
 
-    GameState gameState(board, GameState::PlayerType::Human, GameState::PlayerType::AI);
+    GameState gameState(board, GameState::PlayerType::Human, GameState::PlayerType::Human);
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
