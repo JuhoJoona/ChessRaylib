@@ -5,16 +5,23 @@ std::vector<Move> MoveGenerator::GenerateMoves(const Board& board, int color) {
     std::vector<Move> moves;
     CalculateNumSquaresToEdge();
 
-    // Find our king's position
-    int kingSquare = board.getKingPosition(color);
-    bool isInCheck = IsSquareAttacked(board, kingSquare, (color == Piece::White) ? Piece::Black : Piece::White);
+    std::cout << "Generating moves for color: " << 
+        (color == Piece::White ? "White" : "Black") << std::endl;
 
-    // Generate all possible moves first
+    // Generate all possible moves
     for (int startSquare = 0; startSquare < 64; startSquare++) {
         int piece = board[startSquare];
         
         // Skip empty squares and opponent's pieces
-        if (piece == Piece::None || Piece::Color(piece) != color) continue;
+        if (piece == Piece::None || Piece::Color(piece) != color) {
+            continue;
+        }
+
+        // Debug verification
+        if (Piece::Color(piece) != color) {
+            std::cout << "ERROR: Wrong color piece being processed!" << std::endl;
+            continue;
+        }
 
         if (Piece::IsType(piece, Piece::Bishop) || Piece::IsType(piece, Piece::Rook) || Piece::IsType(piece, Piece::Queen)) {
             GenerateSlidingMoves(board, startSquare, moves, piece);
@@ -30,36 +37,23 @@ std::vector<Move> MoveGenerator::GenerateMoves(const Board& board, int color) {
         }
     }
 
-    // If in check, filter moves to only those that get out of check
-    if (isInCheck) {
-        std::vector<Move> legalMoves;
-        for (const Move& move : moves) {
-            // Create a temporary board to test the move
-            Board tempBoard = board;
-            
-            // Make the move on the temporary board
-            tempBoard[move.TargetSquare] = tempBoard[move.StartingSquare];
-            tempBoard[move.StartingSquare] = Piece::None;
-            
-            // Find the king's new position (in case this was a king move)
-            int newKingSquare = Piece::IsType(board[move.StartingSquare], Piece::King) ? 
-                move.TargetSquare : kingSquare;
-            
-            // If after making this move we're not in check anymore, it's a legal move
-            if (!IsSquareAttacked(tempBoard, newKingSquare, (color == Piece::White) ? Piece::Black : Piece::White)) {
-                legalMoves.push_back(move);
-            }
-        }
-        return legalMoves;
-    }
-    
-    // If not in check, filter moves that would put us in check
+    // Filter out moves that would leave us in check
     std::vector<Move> legalMoves;
+    int kingSquare = board.getKingPosition(color);
+    
     for (const Move& move : moves) {
+        // Verify the piece color matches the current turn
+        int pieceColor = Piece::Color(board[move.StartingSquare]);
+        if (pieceColor != color) {
+            continue;  // Skip moves for pieces of the wrong color
+        }
+
+        // Create a temporary board to test the move
         Board tempBoard = board;
         tempBoard[move.TargetSquare] = tempBoard[move.StartingSquare];
         tempBoard[move.StartingSquare] = Piece::None;
         
+        // Find the king's new position (in case this was a king move)
         int newKingSquare = Piece::IsType(board[move.StartingSquare], Piece::King) ? 
             move.TargetSquare : kingSquare;
             

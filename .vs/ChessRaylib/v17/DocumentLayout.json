@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\jjoon\\repos\\ChessRaylib\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\MoveGenerator.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|solutionrelative:ChessRaylib\\MoveGenerator.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\MoveGenerator.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|solutionrelative:ChessRaylib\\MoveGenerator.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -15,12 +11,28 @@
       "RelativeMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|solutionrelative:ChessRaylib\\GameState.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\MoveGenerator.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|solutionrelative:ChessRaylib\\MoveGenerator.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\ChessRaylib.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|solutionrelative:ChessRaylib\\ChessRaylib.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\GameState.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|solutionrelative:ChessRaylib\\GameState.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\piece.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|solutionrelative:ChessRaylib\\piece.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\TextureHandler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|solutionrelative:ChessRaylib\\TextureHandler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\board.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|solutionrelative:ChessRaylib\\board.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\FENUtility.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -47,18 +59,6 @@
       "RelativeMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|solutionrelative:ChessRaylib\\board.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\piece.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|solutionrelative:ChessRaylib\\piece.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\TextureHandler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|solutionrelative:ChessRaylib\\TextureHandler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\board.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|solutionrelative:ChessRaylib\\board.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\Move.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{95928B12-36DA-431A-9169-4C00884A4954}|ChessRaylib\\ChessRaylib.vcxproj|solutionrelative:ChessRaylib\\Move.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
@@ -70,7 +70,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -82,16 +82,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "GameState.cpp",
               "DocumentMoniker": "C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\GameState.cpp",
               "RelativeDocumentMoniker": "ChessRaylib\\GameState.cpp",
               "ToolTip": "C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\GameState.cpp",
               "RelativeToolTip": "ChessRaylib\\GameState.cpp",
-              "ViewState": "AQIAADYAAAAAAAAAAAAAwEkAAAAjAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAABJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-21T18:05:02.535Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-21T18:05:02.535Z"
             },
             {
               "$type": "Document",
@@ -101,14 +100,13 @@
               "RelativeDocumentMoniker": "ChessRaylib\\GameState.h",
               "ToolTip": "C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\GameState.h",
               "RelativeToolTip": "ChessRaylib\\GameState.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAPAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAYwCAAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-20T21:40:24.502Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-20T21:40:24.502Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "Move.cpp",
               "DocumentMoniker": "C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\Move.cpp",
               "RelativeDocumentMoniker": "ChessRaylib\\Move.cpp",
@@ -120,13 +118,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MoveGenerator.cpp",
               "DocumentMoniker": "C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\MoveGenerator.cpp",
               "RelativeDocumentMoniker": "ChessRaylib\\MoveGenerator.cpp",
               "ToolTip": "C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\MoveGenerator.cpp",
               "RelativeToolTip": "ChessRaylib\\MoveGenerator.cpp",
-              "ViewState": "AQIAAMoAAAAAAAAAAAAlwAgBAAAEAAAA",
+              "ViewState": "AQIAACAAAAAAAAAAAAAAADYAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-06-15T10:11:46.397Z",
               "EditorCaption": ""
@@ -145,32 +143,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "MoveGenerator.h",
               "DocumentMoniker": "C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\MoveGenerator.h",
               "RelativeDocumentMoniker": "ChessRaylib\\MoveGenerator.h",
               "ToolTip": "C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\MoveGenerator.h",
               "RelativeToolTip": "ChessRaylib\\MoveGenerator.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAABOAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-06-14T21:16:58.272Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-14T21:16:58.272Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 6,
               "Title": "TextureHandler.cpp",
               "DocumentMoniker": "C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\TextureHandler.cpp",
               "RelativeDocumentMoniker": "ChessRaylib\\TextureHandler.cpp",
               "ToolTip": "C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\TextureHandler.cpp",
               "RelativeToolTip": "ChessRaylib\\TextureHandler.cpp",
-              "ViewState": "AQIAAAoAAAAAAAAAAABBwB0AAAArAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAAB0AAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-06-14T19:37:51.381Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "TextureHandler.h",
               "DocumentMoniker": "C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\TextureHandler.h",
               "RelativeDocumentMoniker": "ChessRaylib\\TextureHandler.h",
@@ -182,19 +179,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 5,
               "Title": "piece.cpp",
               "DocumentMoniker": "C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\piece.cpp",
               "RelativeDocumentMoniker": "ChessRaylib\\piece.cpp",
               "ToolTip": "C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\piece.cpp",
               "RelativeToolTip": "ChessRaylib\\piece.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAASAAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAjwBoAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-06-12T20:17:16.094Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "FENUtility.cpp",
               "DocumentMoniker": "C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\FENUtility.cpp",
               "RelativeDocumentMoniker": "ChessRaylib\\FENUtility.cpp",
@@ -202,8 +199,7 @@
               "RelativeToolTip": "ChessRaylib\\FENUtility.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-06-12T18:57:16.316Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-12T18:57:16.316Z"
             },
             {
               "$type": "Document",
@@ -213,14 +209,13 @@
               "RelativeDocumentMoniker": "ChessRaylib\\ChessRaylib.cpp",
               "ToolTip": "C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\ChessRaylib.cpp",
               "RelativeToolTip": "ChessRaylib\\ChessRaylib.cpp",
-              "ViewState": "AQIAADMAAAAAAAAAAAAAAE0AAAAMAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-06-12T16:23:34.981Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-12T16:23:34.981Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "FENUtility.h",
               "DocumentMoniker": "C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\FENUtility.h",
               "RelativeDocumentMoniker": "ChessRaylib\\FENUtility.h",
@@ -232,7 +227,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "piece.h",
               "DocumentMoniker": "C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\piece.h",
               "RelativeDocumentMoniker": "ChessRaylib\\piece.h",
@@ -240,12 +235,11 @@
               "RelativeToolTip": "ChessRaylib\\piece.h",
               "ViewState": "AQIAAAoAAAAAAAAAAAAAACAAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-06-12T17:45:52.282Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-12T17:45:52.282Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "board.cpp",
               "DocumentMoniker": "C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\board.cpp",
               "RelativeDocumentMoniker": "ChessRaylib\\board.cpp",
@@ -257,13 +251,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 7,
               "Title": "board.h",
               "DocumentMoniker": "C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\board.h",
               "RelativeDocumentMoniker": "ChessRaylib\\board.h",
               "ToolTip": "C:\\Users\\jjoon\\repos\\ChessRaylib\\ChessRaylib\\board.h",
               "RelativeToolTip": "ChessRaylib\\board.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAXAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-06-12T17:16:31.203Z"
             }

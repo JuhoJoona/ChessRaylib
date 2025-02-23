@@ -1,4 +1,5 @@
 #include "GameState.h"
+#include <iostream>
 
 GameState::GameState(Board& board, PlayerType whitePlayerType, PlayerType blackPlayerType)
     : board(board)

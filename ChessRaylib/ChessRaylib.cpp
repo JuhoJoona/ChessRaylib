@@ -13,6 +13,7 @@ void HandleInput(Board& board, GameState& state);
 void HandlePieceSelection(Board& board, GameState& state);
 void CancelSelection(Board& board);
 void TryToMakeMove(Board& board, int square, GameState& state);
+void handleAI(Board& board, GameState& state);
 
 int main(void)
 {
@@ -25,7 +26,7 @@ int main(void)
 
     Board board(boardArray);
 
-    GameState gameState(board, GameState::PlayerType::Human, GameState::PlayerType::Human);
+    GameState gameState(board, GameState::PlayerType::Human, GameState::PlayerType::AI);
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
@@ -42,7 +43,7 @@ int main(void)
     while (!WindowShouldClose())
     {
         HandleInput(board, gameState);
-
+        handleAI(board, gameState);
         BeginDrawing();
 
         ClearBackground(DARKGRAY);
@@ -54,6 +55,54 @@ int main(void)
     CloseWindow();
 
     return 0;
+}
+
+
+void handleAI(Board& board, GameState& state) {
+    static double lastMoveTime = 0;
+    const double MOVE_DELAY = 1.0; // 1 second delay between moves
+
+    if (state.GetCurrentPlayerType() == GameState::PlayerType::AI) {
+        double currentTime = GetTime();
+        
+        // Only make a move after the delay
+        if (currentTime - lastMoveTime >= MOVE_DELAY) {
+            // Get current color for AI
+            int aiColor = state.IsWhiteTurn() ? Piece::White : Piece::Black;
+            
+            std::cout << "\n-----AI TURN START-----" << std::endl;
+            std::cout << "AI is playing as: " << 
+                (aiColor == Piece::White ? "White" : "Black") << std::endl;
+            
+            // Generate all legal moves for AI
+            MoveGenerator moveGen;
+            std::vector<Move> legalMoves = moveGen.GenerateMoves(board, aiColor);
+            
+            // If there are legal moves available
+            if (!legalMoves.empty()) {
+                // Select a random move
+                int randomIndex = GetRandomValue(0, legalMoves.size() - 1);
+                Move selectedMove = legalMoves[randomIndex];
+                
+                // Debug: Print selected move details with piece type
+                int piece = board[selectedMove.StartingSquare];
+                int pieceType = Piece::PieceType(piece);
+                int pieceColor = Piece::Color(piece);
+                std::cout << "Selected piece type: " << pieceType << std::endl;
+                std::cout << "Making move from " << selectedMove.StartingSquare 
+                         << " to " << selectedMove.TargetSquare 
+                         << " (Piece color: " << (pieceColor == Piece::White ? "White" : "Black")
+                         << ", AI color: " << (aiColor == Piece::White ? "White" : "Black")
+                         << ")" << std::endl;
+                
+                // Make the move
+                state.TryMakeMove(selectedMove, moveGen);
+            }
+            
+            std::cout << "-----AI TURN END-----\n" << std::endl;
+            lastMoveTime = currentTime;
+        }
+    }
 }
 
 void HandleInput(Board& board, GameState& state)

@@ -1,4 +1,5 @@
 #include "Piece.h"
+#include <iostream>
 
 int Piece::Color(int piece) {
     return piece & (blackMask | whiteMask);
